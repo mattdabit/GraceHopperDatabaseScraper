@@ -6,7 +6,7 @@ auth = require './auth.json'
 
 women = []
 
-n = new Nightmare(loadImages: false)
+nightmare = new Nightmare(loadImages: false)
 .goto "http://apps.gracehopper.org/~abi/prod/resumes/web/index.php/GHC-2015/sponsors/default/login"
 .type '#loginform-username', auth.username
 .type '#loginform-password', auth.password
@@ -21,7 +21,7 @@ logIds = (ids) ->
   ids.forEach (id) -> agentForId id
 
 agentForId = (id) ->
-  n
+  nightmare
   .goto "http://apps.gracehopper.org/~abi/prod/resumes/web/index.php/GHC-2015/sponsors/application/view?id=#{id}"
   .evaluate getInfo, (woman) ->
     console.log "#{woman["First Name"]} #{woman["Last Name"]}\n#{woman.Phone}"
@@ -62,10 +62,10 @@ getInfo = ->
   "Locations for Employment": attrs[29].textContent
 
 for page in [1..112]
-  n
+  nightmare
   .goto "http://apps.gracehopper.org/~abi/prod/resumes/web/index.php/GHC-2015/sponsors/application?page=#{page}"
   .wait '.kv-grid-table'
   .evaluate getIds, logIds
 
-n.run (err, nightmare) ->
+nightmare.run (err, n) ->
   console.error err if err isnt undefined
