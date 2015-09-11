@@ -1,0 +1,17 @@
+{
+  "name": "ghc_db_scrape",
+  "version": "1.0.0",
+  "description": "Grab the GHC attendees and put them into a json file.",
+  "main": "index.coffee",
+  "dependencies": {
+    "nightmare": "^1.8.2"
+  },
+  "devDependencies": {
+    "nightmare": "^1.8.2"
+  },
+  "scripts": {
+    "start": "DEBUG=nightmare coffee index.coffee"
+  },
+  "author": "akonwi",
+  "license": "ISC"
+}
