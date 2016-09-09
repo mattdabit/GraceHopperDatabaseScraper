@@ -1,6 +1,6 @@
 Make sure PhantomJS and CoffeeScript are installed. They can be installed with:
-
-`brew install phantomjs`
+=======
+`brew install phantomjs` or `npm install -g phantomjs`
 
 `npm install -g coffee-script`
 
