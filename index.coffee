@@ -7,7 +7,7 @@ auth = require './auth.json'
 women = []
 
 nightmare = new Nightmare(loadImages: false)
-.goto "http://apps.gracehopper.org/~abi/prod/resumes/web/index.php/GHC-2015/sponsors/default/login"
+.goto "http://apps.anitaborg.org/~abi/prod/resumes/web/index.php/GHC/sponsors/default/login"
 .type '#loginform-username', auth.username
 .type '#loginform-password', auth.password
 .click '.btn-green'
@@ -22,7 +22,7 @@ logIds = (ids) ->
 
 agentForId = (id) ->
   nightmare
-  .goto "http://apps.gracehopper.org/~abi/prod/resumes/web/index.php/GHC-2015/sponsors/application/view?id=#{id}"
+  .goto "http://apps.anitaborg.org/~abi/prod/resumes/web/index.php/GHC/sponsors/application/view?id=#{id}"
   .evaluate getInfo, (woman) ->
     console.log "#{woman["First Name"]} #{woman["Last Name"]}\n#{woman.Phone}"
     women.push woman
@@ -42,28 +42,29 @@ getInfo = ->
   Country: attrs[9].textContent
   "U.S. Citizen": attrs[10].textContent
   "Can Work in U.S.": attrs[11].textContent
-  "Contact By": attrs[12].textContent
-  "Attending": attrs[13].textContent
-  GPA: attrs[14].textContent
-  Major: attrs[15].textContent
-  Education: attrs[16].textContent
-  "Years of Experience": attrs[17].textContent
-  "Current Position Type": attrs[18].textContent
-  "Industry Experience": attrs[19].textContent
-  Skills: attrs[20].textContent
-  "Interested Academic Programs": attrs[21].textContent
-  "Interested Academic Positions": attrs[22].textContent
-  "Interested Non-Academic Positions": attrs[23].textContent
-  "Interested Employment Type": attrs[24].textContent
-  "Interest Field": attrs[25].textContent
-  Availability: attrs[26].textContent
-  "Current Job Status": attrs[27].textContent
-  Comments: attrs[28].textContent
-  "Locations for Employment": attrs[29].textContent
+  "University Student": attrs[12].textContent
+  "Contact By": attrs[13].textContent
+  "Attending": attrs[14].textContent
+  GPA: attrs[15].textContent
+  Major: attrs[16].textContent
+  Education: attrs[17].textContent
+  "Years of Experience": attrs[18].textContent
+  "Current Position Type": attrs[19].textContent
+  "Industry Experience": attrs[20].textContent
+  Skills: attrs[21].textContent
+  "Interested Academic Programs": attrs[22].textContent
+  "Interested Academic Positions": attrs[23].textContent
+  "Interested Non-Academic Positions": attrs[24].textContent
+  "Interested Employment Type": attrs[25].textContent
+  "Interest Field": attrs[26].textContent
+  Availability: attrs[27].textContent
+  "Current Job Status": attrs[28].textContent
+  Comments: attrs[29].textContent
+  "Locations for Employment": attrs[30].textContent
 
-for page in [1..112]
+for page in [1..175]
   nightmare
-  .goto "http://apps.gracehopper.org/~abi/prod/resumes/web/index.php/GHC-2015/sponsors/application?page=#{page}"
+  .goto "http://apps.anitaborg.org/~abi/prod/resumes/web/index.php/GHC/sponsors/application?page=#{page}"
   .wait '.kv-grid-table'
   .evaluate getIds, logIds
 
